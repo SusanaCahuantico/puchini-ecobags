@@ -265,6 +265,6 @@ async function loadPartial(id, file) {
 
 // Inicializar en cada página
 document.addEventListener("DOMContentLoaded", () => {
-  loadPartial("header", "header.html");
-  loadPartial("footer", "footer.html");
+  loadPartial("header", "/header.html");
+  loadPartial("footer", "/footer.html");
 });
