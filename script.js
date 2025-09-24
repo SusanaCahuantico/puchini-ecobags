@@ -254,7 +254,7 @@ async function loadPartial(id, file) {
   const el = document.getElementById(id);
   if (el) {
     try {
-      const res = await fetch(file);
+      const res = await fetch(`/${file}`);
       if (!res.ok) throw new Error(`Error al cargar ${file}`);
       el.innerHTML = await res.text();
     } catch (error) {
@@ -264,6 +264,6 @@ async function loadPartial(id, file) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  loadPartial("header", "./header.html");
-  loadPartial("footer", "./footer.html");
+  loadPartial("header", "header.html");
+  loadPartial("footer", "footer.html");
 });
