@@ -119,7 +119,7 @@
   {
     "id": "14",
     "nombre": "Chaleco",
-    "descripcionCorta": "Bolsas reutilizables y ecológicas",
+    "descripcionCorta": "",
     "descripcionLarga": "Perfectas para compras diarias, prácticas y resistentes.",
     "categoria": "bolsas",
     "imagen": "assets/images/23.png",
@@ -196,8 +196,8 @@
   },
   {
     "id": "20",
-    "nombre": "Bolsas de notex",
-    "descripcionCorta": "Bolsas reutilizables y ecológicas",
+    "nombre": "Mochila",
+    "descripcionCorta": "",
     "descripcionLarga": "Disponibles con diseños personalizables y gran resistencia.",
     "categoria": "bolsas",
     "imagen": "assets/images/29.png",
