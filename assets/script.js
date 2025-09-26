@@ -333,3 +333,23 @@ document.addEventListener("DOMContentLoaded", () => {
     window._puchiniSlider = { next, prev, goTo };
   });
 })();
+
+window.sendToWhatsApp = function () {
+  const nameEl = document.getElementById("name");
+  const emailEl = document.getElementById("email");
+  // const messageEl = document.getElementById("message");
+
+  const name = nameEl ? nameEl.value.trim() : "";
+  const email = emailEl ? emailEl.value.trim() : "";
+
+  if (!name && !email) {
+    alert("Por favor completa al menos un dato antes de enviar.");
+    return;
+  }
+
+  const text = `👤 Nombre: ${encodeURIComponent(name)}%0A📧 Email: ${encodeURIComponent(email)}%0A💬`;
+  const url = `https://wa.me/51951938417?text=${text}`;
+
+  window.open(url, "_blank");
+};
+
