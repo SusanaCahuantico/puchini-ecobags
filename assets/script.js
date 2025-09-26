@@ -1,7 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
   console.log("script.js inicializado ✅");
 
-  // ====== FORM ======
   const form = document.getElementById("contactForm");
   if (form) {
     form.addEventListener("submit", (e) => {
@@ -11,12 +10,10 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // ====== FOOTER YEAR ======
   const year = new Date().getFullYear();
   if (document.getElementById("year")) document.getElementById("year").textContent = year;
   if (document.getElementById("y")) document.getElementById("y").textContent = year;
 
-  // ====== MENU MOBILE ======
   const menuBtn = document.getElementById("menu-btn");
   const menu = document.getElementById("menu");
   if (menuBtn && menu) {
@@ -25,7 +22,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // ====== SMOOTH SCROLL ======
   document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     anchor.addEventListener("click", function (e) {
       const href = this.getAttribute("href");
@@ -36,9 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
       target.scrollIntoView({ behavior: "smooth", block: "start" });
     });
   });
-
-  // ====== LOAD PARTIALS ======
-  async function loadPartial(id, file) {
+ async function loadPartial(id, file) {
     const el = document.getElementById(id);
     if (el) {
       try {
@@ -54,7 +48,6 @@ document.addEventListener("DOMContentLoaded", () => {
   loadPartial("header", "header.html");
   loadPartial("footer", "footer.html");
 
-  // ====== PRODUCTOS ======
   let productosGlobal = [];
   let productosMostrados = 0;
   const productosPorPagina = 12;
@@ -107,15 +100,19 @@ document.addEventListener("DOMContentLoaded", () => {
               <p class="mt-1 text-sm text-gray-600">${p.descripcionCorta}</p>
             </div>
 
-            <div class="mt-4 bg-[#FAFAFA] p-3 rounded-lg border">
-              <h4 class="text-sm font-semibold text-gray-800 flex items-center space-x-2">
-                <span>📏</span><span>Medidas disponibles</span>
-              </h4>
-              <div class="mt-2 flex flex-wrap gap-2">
-                ${medidasHTML}
-              </div>
+      ${p.medidasTrue
+        ? `
+          <div class="mt-4 bg-[#FAFAFA] p-3 rounded-lg border">
+            <h4 class="text-sm font-semibold text-gray-800 flex items-center space-x-2">
+              <span></span><span>${p.medidasTrue}</span>
+            </h4>
+            <div class="mt-2 flex flex-wrap gap-2">
+              ${medidasHTML}
             </div>
-
+          </div>
+        `
+        : ""
+      }
             <div class="mt-4">
               <p class="text-xl font-bold text-[#E91E8A]">Desde S/${p.precioMin}</p>
               <p class="text-sm text-gray-500">Hasta S/${p.precioMax} según cantidad</p>
@@ -142,7 +139,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // ====== DETALLE PRODUCTO ======
+
   async function cargarProducto() {
     const params = new URLSearchParams(window.location.search);
     const id = params.get("id");
@@ -154,7 +151,6 @@ document.addEventListener("DOMContentLoaded", () => {
       const producto = productos.find((p) => p.id == id);
       if (!producto) return;
 
-      // Hero
       document.title = `Puchini - ${producto.nombre}`;
       document.getElementById("producto-nombre").textContent = producto.nombre;
       document.getElementById("producto-descripcion").textContent =
@@ -162,12 +158,10 @@ document.addEventListener("DOMContentLoaded", () => {
       document.getElementById("producto-precio").textContent = `Desde S/${producto.precioMin}`;
       document.getElementById("producto-hero-imagen").src = producto.imagen;
 
-      // Main
       document.getElementById("producto-imagen").src = producto.imagen;
       document.getElementById("producto-detalles").textContent =
         producto.descripcionLarga || producto.descripcionCorta;
 
-      // Medidas
       const medidasDiv = document.getElementById("producto-medidas");
       medidasDiv.innerHTML = producto.medidas
         .map(
@@ -184,7 +178,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // ====== RUTAS ======
   const path = window.location.pathname;
 
   if (path.includes("index.html") || path === "/" || path.endsWith("/")) {
